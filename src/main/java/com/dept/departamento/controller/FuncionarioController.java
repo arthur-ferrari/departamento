@@ -1,4 +1,4 @@
-package com.psii.appfiliacao.controller;
+package com.dept.departamento.controller;
 
 import java.util.List;
 
