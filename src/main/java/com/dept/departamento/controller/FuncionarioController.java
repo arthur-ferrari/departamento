@@ -18,10 +18,10 @@ import com.psii.appfiliacao.service.PaiService;
 
 @Controller
 @RequestMapping("/filiacoes")
-public class FiliacaoController {
+public class FuncionarioController {
 
     @Autowired
-    private FiliacaoService filiacaoservice;
+    private FuncionarioController FuncionarioController;
 
     @Autowired
     private MaeService maeService;
@@ -31,7 +31,7 @@ public class FiliacaoController {
 
     @GetMapping 
     public String listarFiliacao(Model model) {
-        List<Filiacao> filiacao = filiacaoservice.listarFiliacao();
+        List<Filiacao> filiacao = FiliacaoController.listarFiliacao();
         model.addAttribute("filiacao", filiacao);
         return "lista_filiacoes";
     }
