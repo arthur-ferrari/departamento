@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xlmns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Filiações</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>Filiações</h1>
+    <a href="/maes/novo">Nova Mãe</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Data de Nascimento</th>
+                <th>Ações</th>
+                <th>Filhos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="mae: ${mae}">
+                <td th:text="${mae.id}"></td>
+                <td th:text="${mae.nome}"></td>
+                <td th:text="${mae.dataNascimento}"></td>
+                <td>
+
+                    <a th:href="@{/maes/{id}/editar(id+${mae.id})}">Editar</a>
+                    <a th:href="@{/maes/{id}/delete(id+${mae.id})}">Deletar</a>
+                    </td>
+
+                    <select th:if="${mae.filiacao != null}">
+                        <option th:each="filiacao : ${mae.filiacao}" th:value="${filiacao.id}"></option>
+                    </select>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/">Home</a>
+    
+</body>
+</html>
