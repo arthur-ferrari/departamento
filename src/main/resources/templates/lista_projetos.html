@@ -1,66 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <title>Formulário de Pai</title>
+    <title>Lista de Projetos</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
-
 <body>
-    <h1>Mães</h1>
-    <a href="/maes/novo">Novo Mãe</a>
+    <h1>Projetos</h1>
+    <a href="/projetos/novo">Novo Projeto</a>
+
     <table>
         <thead>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Nome</th>
-                <th>Data Nascimento</th>
+                <th>Data de Início</th>
+                <th>Departamento</th>
+                <th>Funcionário</th>
                 <th>Ações</th>
-                <th>Filhos</th> <!-- Coluna para os filhos -->
             </tr>
         </thead>
         <tbody>
-            <tr th:each="mae : ${maes}">
-                <td th:text="${mae.id}"></td>
-                <td th:text="${mae.nome}"></td>
-                <td th:text="${mae.dataNascimento}"></td>
+            <tr th:each="projeto : ${projetos}">
+                <td th:text="${projeto.id}"></td>
+                <td th:text="${projeto.nome}"></td>
+                <td th:text="${projeto.dataInicio}"></td>
+                <td th:text="${projeto.departamento.nome}"></td>
+                <td th:text="${projeto.funcionario.nome}"></td>
                 <td>
-                    <a href="@{/mae/{id}/editar(id=${mae.id})}">Editar</a>
-                    <a href="@{/mae/{id}/deletar(id=${mae.id})}">Deletar</a>
-                    <!DOCTYPE html>
-                    <html xmlns:th="http://www.thymeleaf.org">
+                    <a th:href="@{/projetos/{id}/editar(id=${projeto.id})}">Editar</a>
+                    <a th:href="@{/projetos/{id}/deletar(id=${projeto.id})}">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-                    <head>
-                        <title>Formulário de Pai</title>
-                        <link rel="stylesheet" href="/css/style.css">
-                    </head>
-
-                    <body>
-                        <h1>Mães</h1>
-                        <a href="/maes/novo">Novo Mãe</a>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Nome</th>
-                                    <th>Data Nascimento</th>
-                                    <th>Ações</th>
-                                    <th>Filhos</th> <!-- Coluna para os filhos -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="mae : ${maes}">
-                                    <td th:text="${mae.id}"></td>
-                                    <td th:text="${mae.nome}"></td>
-                                    <td th:text="${mae.dataNascimento}"></td>
-                                    <td>
-                                        <a href="@{/mae/{id}/editar(id=${mae.id})}">Editar</a>
-                                        <a href="@{/mae/{id}/deletar(id=${mae.id})}">Deletar</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <a href="/">Home</a>
-                    </body>
-
-                    </html>
+    <a href="/">Home</a>
+</body>
+</html>

@@ -5,63 +5,52 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.dept.departamento.model.Funcionario;
+import com.dept.departamento.service.FuncionarioService;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.psii.appfiliacao.model.Filiacao;
-import com.psii.appfiliacao.service.FiliacaoService;
-import com.psii.appfiliacao.service.MaeService;
-import com.psii.appfiliacao.service.PaiService;
 
 @Controller
-@RequestMapping("/filiacoes")
+@RequestMapping("/funcionarios")
 public class FuncionarioController {
 
     @Autowired
-    private FuncionarioController FuncionarioController;
+    private FuncionarioService funcionarioService;
 
-    @Autowired
-    private MaeService maeService;
-
-    @Autowired
-    private PaiService paiService;
-
-    @GetMapping 
-    public String listarFiliacao(Model model) {
-        List<Filiacao> filiacao = FiliacaoController.listarFiliacao();
-        model.addAttribute("filiacao", filiacao);
-        return "lista_filiacoes";
+    @GetMapping
+    public String listarFuncionarios(Model model) {
+        List<Funcionario> funcionarios = funcionarioService.listarFuncionarios();
+        model.addAttribute("funcionarios", funcionarios);
+        return "lista_funcionarios";
     }
 
     @GetMapping("/novo")
-    public String novaFiliacao(Model model) {
-        model.addAttribute("filiacao", new Filiacao());
-        model.addAttribute("mae", maeService.listarMae());
-        model.addAttribute("pai", paiService.listarPai());
-        return "form_filiacao";
+    public String novoFuncionario(Model model) {
+        model.addAttribute("funcionario", new Funcionario());
+        return "form_funcionario";
     }
 
-    @PostMapping 
-    public String salvarFiliacao(@ModelAttribute Filiacao filiacao) {
-        filiacaoservice.salvarFiliacao(filiacao);
-        return "redirect:/filiacoes";
+    @PostMapping
+    public String salvarFuncionario(@ModelAttribute Funcionario funcionario) {
+        funcionarioService.salvarFuncionario(funcionario);
+        return "redirect:/funcionarios";
     }
 
     @GetMapping("/{id}/editar")
-    public String editarFiliacao(@PathVariable Long id, Model model) {
-        Filiacao filiacao = filiacaoservice.buscarFiliacao(id);
-        model.addAttribute("filiacao", filiacao);
-        model.addAttribute("mae", maeService.listarMae());
-        model.addAttribute("pai", paiService.listarPai());
-        return "form_filiacao";
+    public String editarFuncionario(@PathVariable Long id, Model model) {
+        Funcionario funcionario = funcionarioService.buscarFuncionario(id);
+        model.addAttribute("funcionario", funcionario);
+        return "form_funcionario";
     }
 
     @GetMapping("/{id}/deletar")
-    public String deletarConsulta(@PathVariable Long id){
-        filiacaoservice.deletarFiliacao(id);
-        return "redirect:/filiacoes";
-}
+    public String deletarFuncionario(@PathVariable Long id) {
+        funcionarioService.deletarFuncionario(id);
+        return "redirect:/funcionarios";
+    }
 }

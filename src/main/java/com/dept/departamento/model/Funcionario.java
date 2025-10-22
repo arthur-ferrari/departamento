@@ -1,46 +1,35 @@
-package com.psii.appfiliacao.model;
+package com.dept.departamento.model;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
-public class Filiacao {
+public class Funcionario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private LocalDate nascimento;
     private String nome;
+    private String cargo;
+    private Double salario;
 
-    @ManyToOne
-    @JoinColumn(name = "mae_id")
-    private Mae mae;
+    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL)
+    private List<Projeto> projetos = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "pai_id")
-    private Pai pai;
-
-    //getters e setters
+    // Getters e Setters
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public LocalDate getNascimento() {
-        return nascimento;
-    }
-
-    public void setNascimento(LocalDate nascimento) {
-        this.nascimento = nascimento;
     }
 
     public String getNome() {
@@ -51,24 +40,27 @@ public class Filiacao {
         this.nome = nome;
     }
 
-    public Mae getMae() {
-        return mae;
+    public String getCargo() {
+        return cargo;
     }
 
-    public void setMae(Mae mae) {
-        this.mae = mae;
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
-    public Pai getPai() {
-        return pai;
+    public Double getSalario() {
+        return salario;
     }
 
-    public void setPai(Pai pai) {
-        this.pai = pai;
+    public void setSalario(Double salario) {
+        this.salario = salario;
     }
 
-    //getters e setters
-    
-    
-    
+    public List<Projeto> getProjetos() {
+        return projetos;
+    }
+
+    public void setProjetos(List<Projeto> projetos) {
+        this.projetos = projetos;
+    }
 }

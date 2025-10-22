@@ -1,4 +1,4 @@
-package com.psii.appfiliacao.controller;
+package com.dept.departamento.controller;
 
 import java.util.List;
 
@@ -11,51 +11,54 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.psii.appfiliacao.model.Filiacao;
-import com.psii.appfiliacao.model.Mae;
-import com.psii.appfiliacao.service.FiliacaoService;
-import com.psii.appfiliacao.service.MaeService;
+import com.dept.departamento.model.Departamento;
+import com.dept.departamento.model.Projeto;
+import com.dept.departamento.service.DepartamentoService;
+import com.dept.departamento.service.ProjetoService;
 
 @Controller
-@RequestMapping("/maes")
-public class MaeController {
+@RequestMapping("/departamentos")
+public class DepartamentoController {
 
     @Autowired
-    private MaeService maeService;
+    private DepartamentoService departamentoService;
     @Autowired
-    private FiliacaoService filiacaoService;
+    private ProjetoService projetoService;
 
-    @GetMapping  
-    public String listarMaes(Model model) {
-        List<Mae> maes = maeService.listarMae(); // Listar todas as Mães
-        for (Mae mae : maes) {
-            // Carregar os filhos para cada mãe
-            List<Filiacao> filhos = filiacaoService.getFiliacaoByMaeId(mae.getId());
-            mae.setFiliacao(filhos); // Associar a lista de filhos à mãe
+    @GetMapping
+    public String listarDepartamentos(Model model) {
+        List<Departamento> departamentos = departamentoService.listarDepartamentos();
+        for (Departamento departamento : departamentos) {
+            // Carregar os projetos para cada departamento
+            List<Projeto> projetos = projetoService.getProjetosByDepartamentoId(departamento.getId());
+            departamento.setProjetos(projetos);
         }
-        model.addAttribute("maes", maes); // Passar as mães e seus filhos para o template
-        return "lista_maes"; // Retorna para o template de listar-maes
+        model.addAttribute("departamentos", departamentos);
+        return "lista_departamentos";
     }
+
     @GetMapping("/novo")
-    public String novoMae(Model model){
-        model.addAttribute("mae", new Mae());
-        return "form_mae";
+    public String novoDepartamento(Model model) {
+        model.addAttribute("departamento", new Departamento());
+        return "form_departamento";
     }
 
     @PostMapping
-    public String salvarMae(@ModelAttribute Mae mae){
-        maeService.salvarMae(mae);
-        return "redirect:/maes";
+    public String salvarDepartamento(@ModelAttribute Departamento departamento) {
+        departamentoService.salvarDepartamento(departamento);
+        return "redirect:/departamentos";
     }
-     @GetMapping("/{id}/editar")
-    public String editarMae(@PathVariable Long id, Model model) {
-        Mae mae = maeService.buscarMae(id);
-        model.addAttribute("mae", mae);
-        return "form_mae";
+
+    @GetMapping("/{id}/editar")
+    public String editarDepartamento(@PathVariable Long id, Model model) {
+        Departamento departamento = departamentoService.buscarDepartamento(id);
+        model.addAttribute("departamento", departamento);
+        return "form_departamento";
     }
+
     @GetMapping("/{id}/deletar")
-    public String deletarMae(@PathVariable Long id) {
-        maeService.deletarMae(id);
-        return "redirect:/maes";
+    public String deletarDepartamento(@PathVariable Long id) {
+        departamentoService.deletarDepartamento(id);
+        return "redirect:/departamentos";
     }
 }

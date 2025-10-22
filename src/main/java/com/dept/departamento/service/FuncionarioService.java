@@ -1,29 +1,32 @@
-package com.psii.appfiliacao.service;
+package com.dept.departamento.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.psii.appfiliacao.model.Mae;
-import com.psii.appfiliacao.repository.MaeRepository;
+import com.dept.departamento.model.Funcionario;
+import com.dept.departamento.repository.FuncionarioRepository;
 
 @Service
-public class MaeService {
-    @Autowired
-    private MaeRepository maeRepository;
+public class FuncionarioService {
 
-    public List<Mae> listarMae(){
-        return maeRepository.findAll();
+    @Autowired
+    private FuncionarioRepository funcionarioRepository; // CORRETO: injeta o repository
+
+    public List<Funcionario> listarFuncionarios() {
+        return funcionarioRepository.findAll();
     }
-    public Mae salvarMae(Mae mae) {
-        return maeRepository.save(mae);
+
+    public Funcionario salvarFuncionario(Funcionario funcionario) {
+        return funcionarioRepository.save(funcionario);
     }
-    public Mae buscarMae(Long id) {
-        return maeRepository.findById(id).orElse(null);
+
+    public Funcionario buscarFuncionario(Long id) {
+        return funcionarioRepository.findById(id).orElse(null);
     }
-    public void deletarMae(Long id) {
-        maeRepository.deleteById(id);
+
+    public void deletarFuncionario(Long id) {
+        funcionarioRepository.deleteById(id);
     }
 }
-

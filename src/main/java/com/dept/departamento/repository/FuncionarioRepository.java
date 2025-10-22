@@ -1,12 +1,9 @@
-package com.psii.appfiliacao.repository;
-
-import java.util.List;
+package com.dept.departamento.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.psii.appfiliacao.model.Filiacao;
+import com.dept.departamento.model.Funcionario;
 
-public interface FiliacaoRepository extends JpaRepository<Filiacao, Long>{
-    List<Filiacao> findByMaeId(Long maeId);
-    List<Filiacao> findByPaiId(Long paiID);
+public interface FuncionarioRepository extends JpaRepository<Funcionario, Long>{
+
 }

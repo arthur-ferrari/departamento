@@ -1,35 +1,46 @@
-package com.psii.appfiliacao.model;
+package com.dept.departamento.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Mae {
+public class Projeto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private LocalDate dataInicio;
     private String nome;
-    private LocalDate dataNascimento;
-    private String telefone;
-    
-    @OneToMany(mappedBy = "mae", cascade = CascadeType.ALL) 
-    private List<Filiacao> filiacao = new ArrayList<>();
-    
-    //getters e setters
+
+    @ManyToOne
+    @JoinColumn(name = "departamento_id")
+    private Departamento departamento;
+
+    @ManyToOne
+    @JoinColumn(name = "funcionario_id")
+    private Funcionario funcionario;
+
+    // Getters e Setters
     public Long getId() {
         return id;
     }
-    
+
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public LocalDate getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(LocalDate dataInicio) {
+        this.dataInicio = dataInicio;
     }
 
     public String getNome() {
@@ -40,28 +51,19 @@ public class Mae {
         this.nome = nome;
     }
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
+    public Departamento getDepartamento() {
+        return departamento;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public Funcionario getFuncionario() {
+        return funcionario;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
-
-    public List<Filiacao> getFiliacao() {
-        return filiacao;
-    }
-
-    public void setFiliacao(List<Filiacao> filiacao) {
-        this.filiacao = filiacao;
-    }
-    
 }

@@ -1,56 +1,67 @@
-package com.psii.appfiliacao.controller;
+package com.dept.departamento.controller;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.psii.appfiliacao.model.Pai;
-import com.psii.appfiliacao.service.PaiService;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.dept.departamento.model.Projeto;
+import com.dept.departamento.service.DepartamentoService;
+import com.dept.departamento.service.FuncionarioService;
+import com.dept.departamento.service.ProjetoService;
 
 @Controller
-@RequestMapping("/pais")
-public class PaiController {
+@RequestMapping("/projetos")
+public class ProjetoController {
 
     @Autowired
-    private PaiService paiService;
+    private ProjetoService projetoService;
 
-    @GetMapping
-    public String listarPai(Model model) {
-        List<Pai> pai = paiService.listarPai();
-        model.addAttribute("pai", pai);
-        return "lista_pais";
+    @Autowired
+    private DepartamentoService departamentoService;
+
+    @Autowired
+    private FuncionarioService funcionarioService;
+
+    @GetMapping 
+    public String listarProjetos(Model model) {
+        List<Projeto> projetos = projetoService.listarProjetos();
+        model.addAttribute("projetos", projetos);
+        return "lista_projetos";
     }
 
     @GetMapping("/novo")
-    public String novoPai(Model model) {
-        model.addAttribute("pai", new Pai());
-        return "form_pai";
+    public String novoProjeto(Model model) {
+        model.addAttribute("projeto", new Projeto());
+        model.addAttribute("departamentos", departamentoService.listarDepartamentos());
+        model.addAttribute("funcionarios", funcionarioService.listarFuncionarios());
+        return "form_projeto";
     }
 
-    @PostMapping
-public String salvarPai(@ModelAttribute Pai pai) {
-    paiService.salvarPai(pai);
-    return "redirect:/pais";
-}
+    @PostMapping 
+    public String salvarProjeto(@ModelAttribute Projeto projeto) {
+        projetoService.salvarProjeto(projeto);
+        return "redirect:/projetos";
+    }
 
     @GetMapping("/{id}/editar")
-    public String editarPai(@PathVariable Long id, Model model) {
-        Pai pai = paiService.buscarPai(id);
-        model.addAttribute("pai", pai);
-        return "form_pai";
+    public String editarProjeto(@PathVariable Long id, Model model) {
+        Projeto projeto = projetoService.buscarProjeto(id);
+        model.addAttribute("projeto", projeto);
+        model.addAttribute("departamentos", departamentoService.listarDepartamentos());
+        model.addAttribute("funcionarios", funcionarioService.listarFuncionarios());
+        return "form_projeto";
     }
 
     @GetMapping("/{id}/deletar")
-    public String deletarPai(@PathVariable Long id) {
-        paiService.deletarPai(id);
-        return "redirect:/pais";
+    public String deletarProjeto(@PathVariable Long id){
+        projetoService.deletarProjeto(id);
+        return "redirect:/projetos";
     }
 }

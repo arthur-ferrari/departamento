@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+  <!--PAI-->
 <head>
-    <title>Formulário de Pai</title>
+    <title>Formulário de Funcionários</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1 th:text="${pai.id != null} ? 'Editar Pai' : 'Novo Pai'">Formulário de Pai</h1>
+  <h1 th:text="${pai.id != null} ? 'Editar Pai' : 'Novo Pai'">Formulário de Funcionários</h1>
   <form th:action="@{/pais}" th:object="${pai}" method="post">
     <input type="hidden" th:if="${pai.id !=null}" th:field="*{id}" />
     <div class="form-group">
@@ -15,12 +16,18 @@
     </div>
     <div class="form-group">
 
-        <label for="profissao">Profissão:</label>
-        <input type="text" id="profissao" th:field="*{profissao}" required>
+        <label for="cargo">Cargo:</label>
+        <input type="text" id="cargo" th:field="*{cargo}" required>
     </div>
 
-    <button type="submit" th:text="${pai.id !=null} ? 'Atualizar' : 'Salvar'">Salvar</button>
+    <div class="form-group">
+
+      <label for="salario">Salário:</label>
+      <input type="number" id="salario" th:field="*{salario}" required>
+  </div>
+
+    <button type="submit" th:text="${salario.id !=null} ? 'Atualizar' : 'Salvar'">Salvar</button>
   </form>
-  <a href="/pais">Voltar</a>
+  <a href="/salario">Voltar</a>
 </body>
 </html>

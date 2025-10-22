@@ -1,5 +1,6 @@
-package com.psii.appfiliacao.model;
+package com.dept.departamento.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,17 +12,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Pai {
+public class Departamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private String profissao;
+    private LocalDate dataCriacao;
+    private String sigla;
 
-    @OneToMany(mappedBy = "pai", cascade = CascadeType.ALL) 
-    private List<Filiacao> filiacao = new ArrayList<>();
+    @OneToMany(mappedBy = "departamento", cascade = CascadeType.ALL)
+    private List<Projeto> projetos = new ArrayList<>();
 
-    //getters e setters
+    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -38,21 +40,27 @@ public class Pai {
         this.nome = nome;
     }
 
-    public String getProfissao() {
-        return profissao;
+    public LocalDate getDataCriacao() {
+        return dataCriacao;
     }
 
-    public void setProfissao(String profissao) {
-        this.profissao = profissao;
+    public void setDataCriacao(LocalDate dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 
-    public List<Filiacao> getFiliacao() {
-        return filiacao;
+    public String getSigla() {
+        return sigla;
     }
 
-    public void setFiliacao(List<Filiacao> filiacao) {
-        this.filiacao = filiacao;
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
     }
 
-    
+    public List<Projeto> getProjetos() {
+        return projetos;
+    }
+
+    public void setProjetos(List<Projeto> projetos) {
+        this.projetos = projetos;
+    }
 }

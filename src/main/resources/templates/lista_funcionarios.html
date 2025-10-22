@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Lista de Pai</title>
+    <title>Lista de Funcionários</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <h1>Pais</h1>
-    <a href="/pais/novo">Novo Pai</a>
+    <h1>Funcionários</h1>
+    <a href="/funcionarios/novo">Novo Funcionário</a>
     <table>
         <thead>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Nome</th>
-                <th>Profissão</th>
+                <th>Cargo</th>
+                <th>Salário</th>
                 <th>Ações</th>
             </tr>
         </thead>
         <tbody>
-            <tr th:each="pai : ${pai}">
-                <td th:text="${pai.id}"></td>
-                <td th:text="${pai.nome}"></td>
-                <td th:text="${pai.profissao}"></td>
+            <tr th:each="funcionario : ${funcionario}">
+                <td th:text="${funcionario.id}"></td>
+                <td th:text="${funcionario.nome}"></td>
+                <td th:text="${funcionario.cargo}"></td>
+                <td th:text="${funcionario.salario}"></td>
                 <td>
-                    <a href="@{/pais/{id}/editar(id=${pai.id})}">Editar</a>
-                    <a href="@{/pais/{id}/deletar(id=${pai.id})}">Deletar</a>
+                    <a th:href="@{/funcionario/{id}/editar(id=${funcionario.id})}">Editar</a>
+                    <a th:href="@{/funcionario/{id}/deletar(id=${funcionario.id})}">Deletar</a>
                 </td>
             </tr>
         </tbody>
     </table>
     <a href="/">Home</a>
 </body>
-</html>
+<

@@ -1,4 +1,4 @@
-package com.psii.appfiliacao.controller;
+package com.dept.departamento.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
