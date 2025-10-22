@@ -2,7 +2,7 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>Formulario do Projeto</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <h1 th:text="${filiacao.id != null} ? 'Editar Filiacao' : 'Nova Filiacao'"></h1>
@@ -37,7 +37,7 @@
 
         <button type="submit" th:text="${projeto.id != null} ? 'Atualizar' : 'Salvar'">Salvar</button>
     </form>
-    <a href="/projeto">Voltar</a>
+    <a href="/projetos">Voltar</a>
     
 </body>
 </html>
