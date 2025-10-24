@@ -23,7 +23,6 @@ public class Funcionario {
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL)
     private List<Projeto> projetos = new ArrayList<>();
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }

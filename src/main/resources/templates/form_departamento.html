@@ -8,7 +8,7 @@
 
 <body>
     <h1 th:text="${departamento.id != null} ? 'Editar departamento' : 'Nova departamento'">Formulário de Departamento.</h1>
-    <form th:action="@{/departamentos}" th:object="${departamento}" method="post">
+    <form th:action="@{/departamento}" th:object="${departamento}" method="post">
         <input type="hidden" th:if="${departamento.id !=null}" th:field="*{id}" />
         <div class="form-group">
 

@@ -26,7 +26,6 @@ public class Projeto {
     @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }

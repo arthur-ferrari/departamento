@@ -29,7 +29,6 @@ public class DepartamentoController {
     public String listarDepartamentos(Model model) {
         List<Departamento> departamentos = departamentoService.listarDepartamentos();
         for (Departamento departamento : departamentos) {
-            // Carregar os projetos para cada departamento
             List<Projeto> projetos = projetoService.getProjetosByDepartamentoId(departamento.getId());
             departamento.setProjetos(projetos);
         }

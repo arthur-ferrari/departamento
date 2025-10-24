@@ -12,7 +12,7 @@ import com.dept.departamento.repository.FuncionarioRepository;
 public class FuncionarioService {
 
     @Autowired
-    private FuncionarioRepository funcionarioRepository; // CORRETO: injeta o repository
+    private FuncionarioRepository funcionarioRepository;
 
     public List<Funcionario> listarFuncionarios() {
         return funcionarioRepository.findAll();
