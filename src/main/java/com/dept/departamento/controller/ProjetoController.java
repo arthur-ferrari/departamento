@@ -41,7 +41,7 @@ public class ProjetoController {
         model.addAttribute("projeto", new Projeto());
         model.addAttribute("departamentos", departamentoService.listarDepartamentos());
         model.addAttribute("funcionarios", funcionarioService.listarFuncionarios());
-        return "form_projeto";
+        return "form_projeto.html";
     }
 
     @PostMapping 

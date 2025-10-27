@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <!--MAMAE-->
 <head>
     <title>Formulário de Departamento</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-    <h1 th:text="${departamento.id != null} ? 'Editar departamento' : 'Nova departamento'">Formulário de Departamento.</h1>
-    <form th:action="@{/departamento}" th:object="${departamento}" method="post">
-        <input type="hidden" th:if="${departamento.id !=null}" th:field="*{id}" />
-        <div class="form-group">
+    <h1 th:text="${departamento.id != null} ? 'Editar departamento' : 'Novo departamento'">
+        Formulário de Departamento
+    </h1>
 
+    <form th:action="@{/departamentos}" th:object="${departamento}" method="post">
+        <input type="hidden" th:if="${departamento.id != null}" th:field="*{id}" />
+
+        <div class="form-group">
             <label for="nome">Nome:</label>
             <input type="text" id="nome" th:field="*{nome}" required>
         </div>
-        <div class="form-group">
 
+        <div class="form-group">
             <label for="localidade">Localidade:</label>
             <input type="text" id="localidade" th:field="*{localidade}" required>
         </div>
-        <div class="form-group">
 
+        <div class="form-group">
             <label for="sigla">Sigla:</label>
             <input type="text" id="sigla" th:field="*{sigla}" required>
-
-            <button type="submit" th:text"${departamento.id !=null} ? 'Atualizar' : 'Salvar'">Salvar</button>
-    </form>
-            <a href="/departamentos"></a>
         </div>
-</body>
 
+        <button type="submit" th:text="${departamento.id != null} ? 'Atualizar' : 'Salvar'"></button>
+    </form>
+
+    <a href="/departamentos">Voltar</a>
+</body>
 </html>

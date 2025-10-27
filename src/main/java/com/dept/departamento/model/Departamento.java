@@ -1,6 +1,5 @@
 package com.dept.departamento.model;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,13 +16,12 @@ public class Departamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private LocalDate dataCriacao;
+    private String localidade;
     private String sigla;
 
     @OneToMany(mappedBy = "departamento", cascade = CascadeType.ALL)
     private List<Projeto> projetos = new ArrayList<>();
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -40,12 +38,12 @@ public class Departamento {
         this.nome = nome;
     }
 
-    public LocalDate getDataCriacao() {
-        return dataCriacao;
+    public String getLocalidade() {
+        return localidade;
     }
 
-    public void setDataCriacao(LocalDate dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
     }
 
     public String getSigla() {

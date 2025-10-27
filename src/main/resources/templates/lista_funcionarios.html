@@ -24,12 +24,11 @@
                 <td th:text="${funcionario.cargo}"></td>
                 <td th:text="${funcionario.salario}"></td>
                 <td>
-                    <a th:href="@{/funcionario/{id}/editar(id=${funcionario.id})}">Editar</a>
-                    <a th:href="@{/funcionario/{id}/deletar(id=${funcionario.id})}">Deletar</a>
+                    <a th:href="@{/funcionarios/{id}/editar(id=${funcionario.id})}">Editar</a>
+                    <a th:href="@{/funcionarios/{id}/deletar(id=${funcionario.id})}">Deletar</a>
                 </td>
             </tr>
         </tbody>
     </table>
     <a href="/">Home</a>
 </body>
-<

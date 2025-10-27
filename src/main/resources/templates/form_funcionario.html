@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <!--PAI-->
 <head>
     <title>Formulário de Funcionários</title>
     <link rel="stylesheet" href="css/style.css">
@@ -26,7 +25,7 @@
       <input type="number" id="salario" th:field="*{salario}" required>
   </div>
 
-    <button type="submit" th:text="${salario.id !=null} ? 'Atualizar' : 'Salvar'">Salvar</button>
+    <button type="submit" th:text="${funcionario.id !=null} ? 'Atualizar' : 'Salvar'">Salvar</button>
   </form>
   <a href="/funcionarios">Voltar</a>
 </body>
