@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Lista de Projetos</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Projetos</h1>
+    <h1>Lista de Projetos</h1>
+
     <a href="/projetos/novo">Novo Projeto</a>
 
     <table>
@@ -14,21 +16,21 @@
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Data de Início</th>
-                <th>Departamento</th>
                 <th>Funcionário</th>
+                <th>Departamento</th>
                 <th>Ações</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="projeto : ${projetos}">
-                <td th:text="${projeto.id}"></td>
-                <td th:text="${projeto.nome}"></td>
-                <td th:text="${projeto.dataInicio}"></td>
-                <td th:text="${projeto.departamento.nome}"></td>
-                <td th:text="${projeto.funcionario.nome}"></td>
+                <td th:text="${projeto.id}">1</td>
+                <td th:text="${projeto.nome}">Nome</td>
+                <td th:text="${projeto.dataInicio}">Data</td>
+                <td th:text="${projeto.funcionario != null ? projeto.funcionario.nome : '—'}">Funcionário</td>
+                <td th:text="${projeto.departamento != null ? projeto.departamento.nome : '—'}">Departamento</td>
                 <td>
-                    <a th:href="@{/projetos/{id}/editar(id=${projeto.id})}">Editar</a>
-                    <a th:href="@{/projetos/{id}/deletar(id=${projeto.id})}">Deletar</a>
+                    <a th:href="@{|/projetos/${projeto.id}/editar|}">Editar</a>
+                    <a th:href="@{|/projetos/${projeto.id}/deletar|}">Deletar</a>
                 </td>
             </tr>
         </tbody>
